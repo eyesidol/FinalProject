@@ -3,7 +3,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const port = 8000;
 
-const { getTestMessage } = require("./handlers");
+const { getTestMessage, getMongoTest, getMongoItem } = require("./handlers");
 
 express()
   //Allows server to auto-parse REQ.BODY.
@@ -23,6 +23,12 @@ express()
 
   // test endpoint WITH handler
   .get("/test-message", getTestMessage)
+
+  // test endpoint for MongoDB
+  .get("/test-mongo", getMongoTest)
+
+  // test endpoint for MongoDB ONE ITEM
+  .get("/test-mongo-item/:id", getMongoItem)
 
   .listen(port, () => {
     console.log(`Example app listening on port ${port}`);
