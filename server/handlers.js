@@ -11,7 +11,7 @@ const options = {
 };
 
 // test data for test handler
-const testData = "Hello, this is a handler test message";
+const testData = "Hello, this is a handler test message from const testData. I am the data, not message";
 
 // this is a test handler, displayes test message
 const getTestMessage = (req, res) => {
@@ -19,7 +19,7 @@ const getTestMessage = (req, res) => {
     res.status(200).json({
       status: 200,
       data: testData,
-      Message: "This was a successful 2nd test",
+      message: "This was a successful 2nd test",
     });
   } catch {
     res.status(400).json({
@@ -35,11 +35,11 @@ const getMongoTest = async (req, res) => {
   await client.connect();
   const db = client.db("finalproject");
   const result = await db.collection("test").find().toArray();
-  //   console.log(result[0].data);
+
   result
     ? res
         .status(200)
-        .json({ status: 200, data: result, message: " Mongo Test Successful" })
+        .json({ status: 200, data: result, message: " Mongo Test Successful, this is the message not the data" })
     : res.status(404).json({ status: 404, message: "ERROR FAILED TEST" });
   client.close();
 };
@@ -51,13 +51,11 @@ const getMongoItem = async (req, res) => {
   await client.connect();
   const db = client.db("finalproject");
   const result = await db.collection("test").findOne({ _id: _id });
-  console.log(req.params)
-  console.log(_id);
-  console.log(result);
+
   result
     ? res
         .status(200)
-        .json({ status: 200, data: result, message: " Mongo ITEM Successful" })
+        .json({ status: 200, data: result, message: " Mongo ITEM Successful, I am the message not the data" })
     : res.status(404).json({ status: 404, message: "ERROR FAILED TEST" });
   client.close();
 };
