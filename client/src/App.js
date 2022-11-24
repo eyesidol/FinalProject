@@ -1,10 +1,24 @@
+import {useState, useEffect} from "react"
+
+
 
 const App = () => {
+  const [message, setMessage] = useState("Test Failed No Message");
+
+  useEffect(() => {
+    fetch("/test").then((res) =>
+      res
+        .json()
+        .then((data) => setMessage(data.message))
+        .catch((e) => console.log("Error, no message", e))
+    );
+  }, []);
+
   return (
-    <h1>
-TEST
-    </h1>
+    <div>
+      <h1>Test</h1>
+    </div>
   );
-}
+};
 
 export default App;

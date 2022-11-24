@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
+// Do I need to add a proxy at some point?
 const port = 8000;
 
 express()
