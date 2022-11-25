@@ -13,6 +13,9 @@ express()
   .use(helmet())
   .use(morgan("tiny"))
 
+  //-------------------------\\
+  //-----Test Endpoints------\\
+  //-------------------------\\
   // test endpoint, NO handler
   .get("/test", (req, res) => {
     res.status(200).json({
@@ -20,15 +23,19 @@ express()
       message: "Success! Connected to the Test Endpoint",
     });
   })
-
   // test endpoint WITH handler
   .get("/test-message", getTestMessage)
-
   // test endpoint for MongoDB
   .get("/test-mongo", getMongoTest)
-
   // test endpoint for MongoDB ONE ITEM
   .get("/test-mongo-item/:id", getMongoItem)
+  //-------------------------\\
+  //----END Test Endpoints---\\
+  //-------------------------\\
+
+
+
+
 
   .listen(port, () => {
     console.log(`Example app listening on port ${port}`);

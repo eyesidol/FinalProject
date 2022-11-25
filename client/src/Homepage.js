@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-
 const Homepage = () => {
   const [message, setMessage] = useState("Test Failed No Message");
   const [secondMessage, setSecondMessage] = useState("Handler Test Failed");
   const [mongoMessage, setMongoMessage] = useState("Connecting...");
   const [mongoItem, setMongoItem] = useState("No Item");
 
-  const {id} = useParams()
+  const { id } = useParams();
+
+  //-------------------------\\
+  //-------Test Fetches------\\
+  //-------------------------\\
 
   // test fetch, NO handler. Shoes the MESSAGE form endpoint
   useEffect(() => {
@@ -26,7 +29,7 @@ const Homepage = () => {
       .then((res) => res.json())
       .then((data) => {
         setSecondMessage(data.data);
-        console.log(data.message)
+        console.log(data.message);
       });
   }, []);
 
@@ -40,17 +43,20 @@ const Homepage = () => {
       });
   }, []);
 
-    // test fetch, connect to MongoDB and grab all the test items
+  // test fetch, connect to MongoDB and grab all the test items
 
-    useEffect(() => {
-      fetch(`/test-mongo-item/${id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setMongoItem(data.data.data);
-          console.log(data.message);
+  useEffect(() => {
+    fetch(`/test-mongo-item/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setMongoItem(data.data.data);
+        console.log(data.message);
+      });
+  }, [id]);
 
-        });
-    }, [id]);
+  //-------------------------\\
+  //----END Test Fetches-----\\
+  //-------------------------\\
 
   return (
     <div>
