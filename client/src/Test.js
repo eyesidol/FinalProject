@@ -1,8 +1,13 @@
-const Test = () => {
+const Test = ({LoginButton, LogoutButton}) => {
 
 
     
-  return <div>Content here</div>;
+  return <div>
+
+<LoginButton />
+<LogoutButton />
+
+  </div>;
 };
 
 export default Test;
