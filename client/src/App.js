@@ -5,15 +5,21 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
+import Profile from "./Profile";
+// pass profile down?
+import Header from "./Header";
+import Footer from "./Footer";
 
 const App = () => {
   return (
     <BrowserRouter>
+    <Header/>
       <Routes>
-        <Route path="/:id" element={<Homepage />} />
+        <Route path="/:id" element={<Homepage  />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/test-page" element={<Test LoginButton={LoginButton} LogoutButton={LogoutButton} />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 };
