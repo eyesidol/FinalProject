@@ -20,6 +20,32 @@ height: 100px;
 `
 
 const StyledNavLink = styled(NavLink)`
-background-color: blue;
-border: 2px solid green;
+background-color: white;
+border: 2px solid black;
+
+text-decoration: none;
+width: 160px;
+margin: 2px;
+padding: 3px;
+font-size: 20px;
+
+&:link {
+    text-decoration: none;
+    color: black;
+}
+
+&:visited {
+  text-decoration: none;
+  color: black;
+}
+
+&:hover {
+    background-color: lightgrey;
+    color:teal;
+    border-radius: 10px;
+}
+
+&.active{
+    color:teal;
+}
 `
