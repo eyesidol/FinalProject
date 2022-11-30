@@ -1,14 +1,18 @@
+
 const { v4: uuidv4 } = require("uuid");
 
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
-const { query } = require("express");
+const { query, response } = require("express");
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
+
+const setlistKey = process.env.SETLIST_KEY
 
 //-------------------------\\
 //-----Test Handlers------\\
@@ -71,12 +75,26 @@ const getMongoItem = async (req, res) => {
 //----END Test Handlers----\\
 //-------------------------\\
 
+const getArtist = async (req, res) => {
+  const id = req.params.id;
+  console.log(id)
+  try {
+    const result = await query(`https://api.setlist.fm/rest/1.0/artist/${id}`); 
+    const artist = JSON.parse(result); 
+    console.log(result)
+console.log(artist)
 
+  } catch (err) {
+    console.log('Error: ', err);
+  }
+};
 
+// console.log(setlistKey)
 
 
 module.exports = {
   getTestMessage,
   getMongoTest,
   getMongoItem,
+  getArtist
 };
