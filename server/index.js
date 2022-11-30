@@ -6,7 +6,9 @@ const port = 8000;
 const { getTestMessage, 
   getMongoTest, 
   getMongoItem,
-  getArtist 
+  getArtist,
+  getAllSetlist,
+  getSetlist
   } = require("./handlers");
 
 express()
@@ -37,7 +39,12 @@ express()
   //----END Test Endpoints---\\
   //-------------------------\\
 
+  //gets single artist based on id
 .get("/artist/:id", getArtist)
+  //gets all setlists for an artist based on id
+  .get("/artist/setlists/:id", getAllSetlist)
+  //gets a setlist based on setlist ID
+  .get("/setlist/:id", getSetlist)
 
 
 

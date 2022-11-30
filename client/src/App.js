@@ -1,6 +1,8 @@
 import Homepage from "./Homepage";
 import Test from "./Test";
 import Artist from "./Artist";
+import Setlists from "./Setlists";
+import Setlist from "./Setlist";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -28,6 +30,9 @@ const App = () => {
         LogoutButton={LogoutButton} />} 
         />
         <Route path="/artist/:id" element={<Artist />} />
+        <Route path="/artist/setlists/:id" element={<Setlists />} />
+        <Route path="/setlist/:id" element={<Setlist />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

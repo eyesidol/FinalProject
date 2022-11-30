@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 const Homepage = () => {
   const [message, setMessage] = useState("Test Failed No Message");
@@ -59,7 +60,7 @@ const Homepage = () => {
   //-------------------------\\
 
   return (
-    <div>
+    <StyledHomepage>
       <h1>Test</h1>
       <p>{message}</p>
       <h1>Handler Test</h1>
@@ -68,9 +69,14 @@ const Homepage = () => {
       <p>{mongoMessage}</p>
       <h1>Mongo ITEM</h1>
       <p>{mongoItem}</p>
-
-    </div>
+    </StyledHomepage>
   );
 };
 
 export default Homepage;
+
+const StyledHomepage = styled.div `
+display: flex;
+flex-direction: column;
+height: 100vh;
+`

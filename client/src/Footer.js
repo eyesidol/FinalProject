@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 const Footer = () => {
     return ( 
         <StyledFooter>
-            <StyledNavLink to="/" end>Home</StyledNavLink>
-            <StyledNavLink to="/test-page" end>TEST</StyledNavLink>
-            <StyledNavLink to="/637fba077c90d52c79a59a70" end>MONGO ITEM</StyledNavLink>
+            <StyledLogo to="/" end>Encore</StyledLogo>
+            <StyledCopyright>Copyright © 2022 All Rights Reserved by Andrew Milner. </StyledCopyright>
         </StyledFooter>
      );
 }
@@ -15,37 +14,20 @@ export default Footer;
 
 const StyledFooter = styled.div `
 width: 100%;
-color: red;
 height: 100px;
+border-top: 1px solid #7375b6;
 `
-
-const StyledNavLink = styled(NavLink)`
-background-color: white;
-border: 2px solid black;
-
+const StyledLogo = styled(NavLink) `
 text-decoration: none;
 width: 160px;
 margin: 2px;
 padding: 3px;
-font-size: 20px;
+font-size: 30px;
+font-family: 'Lalezar', cursive;
+color: #2fe1b9
+`
 
-&:link {
-    text-decoration: none;
-    color: black;
-}
-
-&:visited {
-  text-decoration: none;
-  color: black;
-}
-
-&:hover {
-    background-color: lightgrey;
-    color:teal;
-    border-radius: 10px;
-}
-
-&.active{
-    color:teal;
-}
+const StyledCopyright = styled.p `
+color: #fbf579;
+text-align: center;
 `

@@ -1,4 +1,5 @@
-const axios = require('axios');
+const zlib = require("zlib");
+const axios = require("axios");
 
 const { v4: uuidv4 } = require("uuid");
 
@@ -12,8 +13,7 @@ const options = {
   useUnifiedTopology: true,
 };
 
-
-const setlistKey = process.env.SETLIST_KEY
+const setlistKey = process.env.SETLIST_KEY;
 
 //-------------------------\\
 //-----Test Handlers------\\
@@ -43,13 +43,11 @@ const getMongoTest = async (req, res) => {
   const db = client.db("finalproject");
   const result = await db.collection("test").find().toArray();
   result
-    ? res
-        .status(200)
-        .json({
-          status: 200,
-          data: result,
-          message: " Mongo Test Successful, this is the message not the data",
-        })
+    ? res.status(200).json({
+        status: 200,
+        data: result,
+        message: " Mongo Test Successful, this is the message not the data",
+      })
     : res.status(404).json({ status: 404, message: "ERROR FAILED TEST" });
   client.close();
 };
@@ -62,13 +60,11 @@ const getMongoItem = async (req, res) => {
   const db = client.db("finalproject");
   const result = await db.collection("test").findOne({ _id: _id });
   result
-    ? res
-        .status(200)
-        .json({
-          status: 200,
-          data: result,
-          message: " Mongo ITEM Successful, I am the message not the data",
-        })
+    ? res.status(200).json({
+        status: 200,
+        data: result,
+        message: " Mongo ITEM Successful, I am the message not the data",
+      })
     : res.status(404).json({ status: 404, message: "ERROR FAILED TEST" });
   client.close();
 };
@@ -77,36 +73,86 @@ const getMongoItem = async (req, res) => {
 //-------------------------\\
 
 const getArtist = async (req, res) => {
-  const options = {
-   headers: {'Accept': 'application/json',
-             'x-api-key': `${setlistKey}`
-             }
-           
-  };
- 
-  const data ={
-    name: "Jake Taper",
-    email: "taperjake@gmail.com"
+  try {
+    const artistId = req.params.id;
+    const options = {
+      headers: { Accept: "application/json", "x-api-key": `${setlistKey}` },
+    };
+
+    const url = `https://api.setlist.fm/rest/1.0/artist/${artistId}`;
+
+    const result = await axios.get(url, options);
+    console.log(result.data);
+    res.status(200).json({
+      status: 200,
+      data: result.data,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: err,
+    });
   }
+};
 
-   const id = req.params.id;
-   console.log(id)
- // AXIOS ???
- // I installed to root not server?
- //`https://api.setlist.fm/rest/1.0/artist/${id}`
-     const result = axios.get(data, options); 
-     // const artist = JSON.parse(result); 
-     console.log(result)
-     .then(res=> console.log(res))
-     .catch(err=> console.log(err))
- };
+const getAllSetlist = async (req, res) => {
+  try {
+    const artistId = req.params.id;
+    const options = {
+      headers: { Accept: "application/json", "x-api-key": `${setlistKey}` },
+    };
 
-// console.log(setlistKey)
+    const url = `https://api.setlist.fm/rest/1.0/artist/${artistId}/setlists?p=1`;
 
+    const result = await axios.get(url, options);
+    console.log(result);
+    res.status(200).json({
+      status: 200,
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: err,
+    });
+  }
+};
+
+const getSetlist = async (req, res) => {
+  try {
+    const setlistId = req.params.id;
+    const options = {
+      headers: { Accept: "application/json", "x-api-key": `${setlistKey}` },
+      decompress: true,
+    };
+
+    const url = `https://api.setlist.fm/rest/1.0/setlist/${setlistId}`;
+
+    const result = await axios.get(url, options);
+    console.log(result);
+
+    // zlib.gunzip(result.data, (err, buffer) => {
+    //   console.log("Decompressed data: ",buffer);
+
+    //     });
+
+    res.status(200).json({
+      status: 200,
+      data: result.data,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: err,
+    });
+  }
+};
 
 module.exports = {
   getTestMessage,
   getMongoTest,
   getMongoItem,
-  getArtist
+  getArtist,
+  getAllSetlist,
+  getSetlist,
 };
