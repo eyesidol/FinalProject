@@ -77,6 +77,9 @@ const getMongoItem = async (req, res) => {
 //-------------------------\\
 
 const getArtist = async (req, res) => {
+  const id = req.params.id;
+  console.log(id)
+ 
   const options = {
    headers: {'Accept': 'application/json',
              'x-api-key': `${setlistKey}`
@@ -84,21 +87,25 @@ const getArtist = async (req, res) => {
            
   };
  
-  const data ={
-    name: "Jake Taper",
-    email: "taperjake@gmail.com"
-  }
+  const url = `https://api.setlist.fm/rest/1.0/artist/${id}`
 
-   const id = req.params.id;
-   console.log(id)
+
  // AXIOS ???
  // I installed to root not server?
- //`https://api.setlist.fm/rest/1.0/artist/${id}`
-     const result = axios.get(data, options); 
-     // const artist = JSON.parse(result); 
-     console.log(result)
-     .then(res=> console.log(res))
-     .catch(err=> console.log(err))
+
+ axios.get(url, options)
+ .then(function (response) {
+   // handle success
+   console.log(response);
+ })
+ .catch(function (error) {
+   // handle error
+   console.log(error);
+ })
+ .then(function () {
+   // always executed
+ });
+
  };
 
 // console.log(setlistKey)
