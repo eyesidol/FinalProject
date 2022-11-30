@@ -76,13 +76,21 @@ const getMongoItem = async (req, res) => {
 //-------------------------\\
 
 const getArtist = async (req, res) => {
+  res.set('Content-Type', 'application/json');
+  res.set('x-api-key', `${setlistKey}`);
+  const test = res.get('Content-Type')
+  console.log(test)
+  const test2 = res.get('x-api-key')
+  console.log(test2)
+
   const id = req.params.id;
   console.log(id)
+// AXIOS ???
   try {
-    const result = await query(`https://api.setlist.fm/rest/1.0/artist/${id}`); 
-    const artist = JSON.parse(result); 
+    const result = await get(`https://api.setlist.fm/rest/1.0/artist/${id}`); 
+    // const artist = JSON.parse(result); 
     console.log(result)
-console.log(artist)
+
 
   } catch (err) {
     console.log('Error: ', err);
