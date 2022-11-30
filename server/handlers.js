@@ -1,3 +1,4 @@
+const axios = require('axios');
 
 const { v4: uuidv4 } = require("uuid");
 
@@ -76,26 +77,29 @@ const getMongoItem = async (req, res) => {
 //-------------------------\\
 
 const getArtist = async (req, res) => {
-  res.set('Content-Type', 'application/json');
-  res.set('x-api-key', `${setlistKey}`);
-  const test = res.get('Content-Type')
-  console.log(test)
-  const test2 = res.get('x-api-key')
-  console.log(test2)
-
-  const id = req.params.id;
-  console.log(id)
-// AXIOS ???
-  try {
-    const result = await get(`https://api.setlist.fm/rest/1.0/artist/${id}`); 
-    // const artist = JSON.parse(result); 
-    console.log(result)
-
-
-  } catch (err) {
-    console.log('Error: ', err);
+  const options = {
+   headers: {'Accept': 'application/json',
+             'x-api-key': `${setlistKey}`
+             }
+           
+  };
+ 
+  const data ={
+    name: "Jake Taper",
+    email: "taperjake@gmail.com"
   }
-};
+
+   const id = req.params.id;
+   console.log(id)
+ // AXIOS ???
+ // I installed to root not server?
+ //`https://api.setlist.fm/rest/1.0/artist/${id}`
+     const result = axios.get(data, options); 
+     // const artist = JSON.parse(result); 
+     console.log(result)
+     .then(res=> console.log(res))
+     .catch(err=> console.log(err))
+ };
 
 // console.log(setlistKey)
 
