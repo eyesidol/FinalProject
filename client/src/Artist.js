@@ -3,26 +3,35 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const Artist = () => {
-    const artistId = useParams()
-    const [artistData, setArtistData] = useState(null)
+  const params = useParams();
+  const [artistData, setArtistData] = useState(null);
 
-// console.log(artistId.id)
+  const artistId = params.id;
+  // console.log(artistId)
 
-    useEffect(() => {
-        fetch(`/artist/${artistId.id}`)
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log(data)
-            setArtistData(data.data);
-            // console.log(artistData)
-          });
-      }, [artistId]);
+  useEffect(() => {
+    fetch(`/artist/${artistId}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setArtistData(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [artistId]);
 
-    return (
-        <div>
-            ARTIST HERE
-        </div>
-      );
+  console.log(artistData);
+
+  return (
+  <div>
+    {artistData && 
+    <h1>{artistData.name}</h1>
 }
- 
+    </div>
+    );
+};
+
 export default Artist;
+
+
