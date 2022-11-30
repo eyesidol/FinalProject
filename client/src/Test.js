@@ -1,4 +1,4 @@
-const Test = ({LoginButton, LogoutButton, Profile}) => {
+const Test = ({LoginButton, LogoutButton, Profile, Searchbar}) => {
 
 // conditionally render login/logout buttons
     
@@ -6,6 +6,7 @@ const Test = ({LoginButton, LogoutButton, Profile}) => {
 
 <LoginButton />
 <LogoutButton />
+<Searchbar/>
   </div>;
 };
 

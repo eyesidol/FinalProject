@@ -3,7 +3,11 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const port = 8000;
 
-const { getTestMessage, getMongoTest, getMongoItem } = require("./handlers");
+const { getTestMessage, 
+  getMongoTest, 
+  getMongoItem,
+  getArtist 
+  } = require("./handlers");
 
 express()
   //Allows server to auto-parse REQ.BODY.
@@ -33,7 +37,7 @@ express()
   //----END Test Endpoints---\\
   //-------------------------\\
 
-
+.get("/artist/:id", getArtist)
 
 
 

@@ -1,14 +1,18 @@
+
 const { v4: uuidv4 } = require("uuid");
 
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
-const { query } = require("express");
+const { query, response } = require("express");
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
+
+const setlistKey = process.env.SETLIST_KEY
 
 //-------------------------\\
 //-----Test Handlers------\\
@@ -71,12 +75,34 @@ const getMongoItem = async (req, res) => {
 //----END Test Handlers----\\
 //-------------------------\\
 
+const getArtist = async (req, res) => {
+  res.set('Content-Type', 'application/json');
+  res.set('x-api-key', `${setlistKey}`);
+  const test = res.get('Content-Type')
+  console.log(test)
+  const test2 = res.get('x-api-key')
+  console.log(test2)
+
+  const id = req.params.id;
+  console.log(id)
+// AXIOS ???
+  try {
+    const result = await get(`https://api.setlist.fm/rest/1.0/artist/${id}`); 
+    // const artist = JSON.parse(result); 
+    console.log(result)
 
 
+  } catch (err) {
+    console.log('Error: ', err);
+  }
+};
+
+// console.log(setlistKey)
 
 
 module.exports = {
   getTestMessage,
   getMongoTest,
   getMongoItem,
+  getArtist
 };
