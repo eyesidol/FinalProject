@@ -9,7 +9,6 @@ import App from "./App";
 const domain = window.__RUNTIME_CONFIG__.REACT_APP_AUTH0_DOMAIN;
 const clientId = window.__RUNTIME_CONFIG__.REACT_APP_AUTH0_CLIENT_ID;
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

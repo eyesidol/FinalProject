@@ -43,19 +43,17 @@ const Setlist = () => {
     return <StyledLoader />;
   }
   return (
-  
     <StyledBody>
-
-{setlistData &&
-<div>
-      <p>Artist: {setlistData.artist.name}</p>
-      <p>Venue: {setlistData.venue.name}</p>
-      <p>
-        City: {setlistData.venue.city.name}, {setlistData.venue.city.state}
-      </p>
-      <p>Date: {setlistData.eventDate}</p>
-      </div>
-}
+      {setlistData && (
+        <div>
+          <p>Artist: {setlistData.artist.name}</p>
+          <p>Venue: {setlistData.venue.name}</p>
+          <p>
+            City: {setlistData.venue.city.name}, {setlistData.venue.city.state}
+          </p>
+          <p>Date: {setlistData.eventDate}</p>
+        </div>
+      )}
       <p>Setlist</p>
 
       {setlistData.sets.set.length > 0 && (
@@ -74,8 +72,6 @@ const Setlist = () => {
           <button onClick={addFavorite}> Save Setlist</button>
         </form>
       )}
-
-
     </StyledBody>
   );
 };

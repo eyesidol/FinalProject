@@ -34,34 +34,30 @@ const Setlists = () => {
 
   return (
     <div>
-      {!setlistsData &&
-      <p>No Shows Found</p>
-}
-      { setlistsData &&
-    <div>
-
-      {setlistsData.setlist.map((item) => {
-        return (
-          <StyledShowCard>
-            <p>{item.eventDate}</p>
-            <StyledSetlistNavlink to={`/setlist/${item.id}`} end>
-              Go to Setlist
-            </StyledSetlistNavlink>
-            <p>{item.venue.name}</p>
-            <p>
-              {item.venue.city.name},{item.venue.city.state}
-            </p>
-            <p>
-              this will be google map {item.venue.city.coords.lat},
-              {item.venue.city.coords.long}
-            </p>
-            <p>{item.venue.city.country.name}</p>
-          </StyledShowCard>
-        );
-      })}
-      
-    </div>
-    }
+      {!setlistsData && <p>No Shows Found</p>}
+      {setlistsData && (
+        <div>
+          {setlistsData.setlist.map((item) => {
+            return (
+              <StyledShowCard>
+                <p>{item.eventDate}</p>
+                <StyledSetlistNavlink to={`/setlist/${item.id}`} end>
+                  Go to Setlist
+                </StyledSetlistNavlink>
+                <p>{item.venue.name}</p>
+                <p>
+                  {item.venue.city.name},{item.venue.city.state}
+                </p>
+                <p>
+                  this will be google map {item.venue.city.coords.lat},
+                  {item.venue.city.coords.long}
+                </p>
+                <p>{item.venue.city.country.name}</p>
+              </StyledShowCard>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

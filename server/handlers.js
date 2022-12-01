@@ -15,8 +15,6 @@ const options = {
 
 const setlistKey = process.env.SETLIST_KEY;
 
-
-
 const getArtist = async (req, res) => {
   try {
     const artistId = req.params.id;
@@ -135,7 +133,7 @@ const getFavorites = async (req, res) => {
   await client.connect();
   const db = client.db("finalproject");
 
-  const result = await db.collection("favorites").findOne().toArray()
+  const result = await db.collection("favorites").find().toArray()
   console.log(result);
 
   res.status(200).json({
