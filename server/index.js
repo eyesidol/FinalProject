@@ -3,15 +3,14 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const port = 8000;
 
-const { getTestMessage, 
-  getMongoTest, 
-  getMongoItem,
+const {
   getArtist,
   getAllSetlist,
   getSetlist,
   getSearchArtist,
-  postFavorite
-  } = require("./handlers");
+  postFavorite,
+  getFavorites,
+} = require("./handlers");
 
 express()
   //Allows server to auto-parse REQ.BODY.
@@ -21,35 +20,17 @@ express()
   .use(helmet())
   .use(morgan("tiny"))
 
-  //-------------------------\\
-  //-----Test Endpoints------\\
-  //-------------------------\\
-  // test endpoint, NO handler
-  .get("/test", (req, res) => {
-    res.status(200).json({
-      status: 200,
-      message: "Success! Connected to the Test Endpoint",
-    });
-  })
-  // test endpoint WITH handler
-  .get("/test-message", getTestMessage)
-  // test endpoint for MongoDB
-  .get("/test-mongo", getMongoTest)
-  // test endpoint for MongoDB ONE ITEM
-  .get("/test-mongo-item/:id", getMongoItem)
-  //-------------------------\\
-  //----END Test Endpoints---\\
-  //-------------------------\\
 
   //gets single artist based on id
-.get("/artist/:id", getArtist)
+  .get("/artist/:id", getArtist)
   //gets all setlists for an artist based on id
   .get("/artist/setlists/:id", getAllSetlist)
   //gets a setlist based on setlist ID
   .get("/setlist/:id", getSetlist)
-.get("/search/artist/:id",getSearchArtist)
+  .get("/search/artist/:id", getSearchArtist)
 
-.post("/post-favorite", postFavorite)
+  .post("/post-favorite", postFavorite)
+  .get("/get-favorites", getFavorites)
 
   .listen(port, () => {
     console.log(`Example app listening on port ${port}`);
