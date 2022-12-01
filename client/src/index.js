@@ -9,9 +9,6 @@ import App from "./App";
 const domain = window.__RUNTIME_CONFIG__.REACT_APP_AUTH0_DOMAIN;
 const clientId = window.__RUNTIME_CONFIG__.REACT_APP_AUTH0_CLIENT_ID;
 
-console.log(window.__RUNTIME_CONFIG__);
-console.log(domain);
-console.log(clientId);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

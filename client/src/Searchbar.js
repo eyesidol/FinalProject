@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -21,7 +20,7 @@ const Searchbar = () => {
         console.log(error);
       });
   };
-
+  console.log(search);
   return (
     <div>
       <p>Enter an artist name to view setlists</p>
@@ -38,19 +37,19 @@ const Searchbar = () => {
           // }}
         />
       </div>
+      {search === undefined && <p>No Artists Found</p>}
       {search && (
         <div>
-
-            {search.artist.map((item) => {
-              return (
-                <div>
-                  <StyledArtistNavlink to={`/artist/setlists/${item.mbid}`} end>
-                    {item.name}
-                  </StyledArtistNavlink>
-                </div>
-              );
-            })}
-     
+          {search.artist.map((item) => {
+            return (
+              <div>
+                <StyledArtistNavlink to={`/artist/setlists/${item.mbid}`} end>
+                  {item.name}
+                </StyledArtistNavlink>
+                <p>{item.disambiguation}</p>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

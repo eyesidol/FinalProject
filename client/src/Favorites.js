@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
