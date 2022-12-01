@@ -13,19 +13,19 @@ const Setlists = () => {
       fetch(`/artist/setlists/${artistId}`)
         .then((res) => res.json())
         .then((res) => {
-            setSetlistsData(res);
-          console.log(res);
+            setSetlistsData(res.data);
+          console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }, [artistId]);
   
-    console.log(setlistsData);
+    console.log(setlistsData.setlist[0].id);
     
 return (
     <div>
-
+<p>{setlistsData.setlist[0].id}</p>
     </div>
 )
 }
