@@ -1,5 +1,4 @@
 import Homepage from "./Homepage";
-import Test from "./Test";
 import Artist from "./Artist";
 import Setlists from "./Setlists";
 import Setlist from "./Setlist";
@@ -22,13 +21,9 @@ const App = () => {
     <GlobalStyle/>
     <Header/>
       <Routes>
-        <Route path="/:id" element={<Homepage  />} />
-        <Route path="/" element={<Homepage />} />
-        <Route path="/test-page" 
-        element={<Test Searchbar={Searchbar} 
+        <Route path="/" element={<Homepage Searchbar={Searchbar} 
         LoginButton={LoginButton} 
-        LogoutButton={LogoutButton} />} 
-        />
+        LogoutButton={LogoutButton} />}  />
         <Route path="/artist/:id" element={<Artist />} />
         <Route path="/artist/setlists/:id" element={<Setlists />} />
         <Route path="/setlist/:id" element={<Setlist />} />

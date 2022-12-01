@@ -145,6 +145,33 @@ const getSetlist = async (req, res) => {
   }
 };
 
+const getSearchArtist = async (req, res) => {
+  try {
+    const search = req.params.id;
+    const options = {
+      headers: { Accept: "application/json", "x-api-key": `${setlistKey}` },
+      decompress: true,
+    };
+
+    const url = `https://api.setlist.fm/rest/1.0/search/artists?artistName=${search}&p=1&sort=sortName`;
+
+    const result = await axios.get(url, options);
+    console.log(result);
+
+
+    res.status(200).json({
+      status: 200,
+      data: result.data,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: err,
+    });
+  }
+};
+
+
 module.exports = {
   getTestMessage,
   getMongoTest,
@@ -152,4 +179,5 @@ module.exports = {
   getArtist,
   getAllSetlist,
   getSetlist,
+  getSearchArtist
 };

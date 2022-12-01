@@ -5,8 +5,6 @@ const Header = () => {
     return ( 
         <StyledHeader>
             <StyledLogo to="/" end>Encore</StyledLogo>
-            <StyledNavLink to="/test-page" end>TEST</StyledNavLink>
-            <StyledNavLink to="/637fba077c90d52c79a59a70" end>MONGO ITEM TEST</StyledNavLink>
             <StyledNavLink to="/artist/:id" end>ARTIST TEST</StyledNavLink>
             <StyledNavLink to="/artist/setlists/:id" end>ALL SETLIST TEST</StyledNavLink>
             <StyledNavLink to="/setlist/:id" end>SETLIST TEST</StyledNavLink>
