@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
 
 const Artist = () => {
-    const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const [artistData, setArtistData] = useState(null);
 
@@ -28,23 +28,14 @@ const Artist = () => {
   console.log(artistData);
 
   if (isLoading) {
-    return <StyledLoader/>;
-}
+    return <StyledLoader />;
+  }
 
-  return (
-  <div>
-    {artistData && 
-    <h1>{artistData.name}</h1>
-}
-    </div>
-    );
+  return <div>{artistData && <h1>{artistData.name}</h1>}</div>;
 };
 
 export default Artist;
 
-
 const StyledLoader = styled(ScaleLoader)`
-color: "#36d7b7";
+  color: "#36d7b7";
 `;
-
-

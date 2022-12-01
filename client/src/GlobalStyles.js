@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     color:#2fe1b9;
   }
 `;
- 
+
 // PURPLE #14192f
 // GREEN #2fe1b9
 // LIGHT PURPLE #7375b6
@@ -33,9 +33,5 @@ const GlobalStyle = createGlobalStyle`
 // Stationary Pink Red: #fa625f
 
 // Purpled: #600473
-
-
-
-
 
 export default GlobalStyle;

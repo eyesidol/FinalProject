@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const Homepage = ({ Profile, Searchbar}) => {
+const Homepage = ({ Profile, Searchbar }) => {
   const [message, setMessage] = useState("Test Failed No Message");
   const [secondMessage, setSecondMessage] = useState("Handler Test Failed");
   const [mongoMessage, setMongoMessage] = useState("Connecting...");
@@ -61,11 +61,7 @@ const Homepage = ({ Profile, Searchbar}) => {
 
   return (
     <StyledHomepage>
-
-
-
-<Searchbar/>
-
+      <Searchbar />
 
       {/* <h1>Test</h1>
       <p>{message}</p>
@@ -81,8 +77,8 @@ const Homepage = ({ Profile, Searchbar}) => {
 
 export default Homepage;
 
-const StyledHomepage = styled.div `
-display: flex;
-flex-direction: column;
-height: 100vh;
-`
+const StyledHomepage = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;

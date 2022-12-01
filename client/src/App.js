@@ -18,19 +18,17 @@ import Searchbar from "./Searchbar";
 const App = () => {
   return (
     <BrowserRouter>
-    <GlobalStyle/>
-    <Header         LoginButton={LoginButton} 
-        LogoutButton={LogoutButton}/>
+      <GlobalStyle />
+      <Header LoginButton={LoginButton} LogoutButton={LogoutButton} />
       <Routes>
-        <Route path="/" element={<Homepage Searchbar={Searchbar} 
- />}  />
+        <Route path="/" element={<Homepage Searchbar={Searchbar} />} />
         <Route path="/artist/:id" element={<Artist />} />
         <Route path="/artist/setlists/:id" element={<Setlists />} />
         <Route path="/setlist/:id" element={<Setlist />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   );
 };
