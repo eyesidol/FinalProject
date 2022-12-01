@@ -42,46 +42,19 @@ if (isLoading) {
             <p>City: {setlistData.venue.city.name}, {setlistData.venue.city.state}</p>
             <p>Tour: {setlistData.tour.name}</p>
             <p>Setlist</p>
+
+{setlistData.sets.set > 0 && 
             <ol>
-                <li>
-{setlistData.sets.set[0].song[0].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[1].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[2].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[3].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[4].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[5].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[6].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[7].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[8].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[9].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[10].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[11].name}
-                </li>
+ {setlistData.sets.set[0].song.map((item)=>{
+
+    return (
+        <li>{item.name}</li>
+    )
+
+ })}
                 
             </ol>
-
+} 
         </StyledBody>
     );
 }
