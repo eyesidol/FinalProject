@@ -40,7 +40,7 @@ const Searchbar = () => {
       </div>
       {search && (
         <div>
-          <p>
+
             {search.artist.map((item) => {
               return (
                 <div>
@@ -50,7 +50,7 @@ const Searchbar = () => {
                 </div>
               );
             })}
-          </p>
+     
         </div>
       )}
     </div>

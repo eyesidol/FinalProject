@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = ({ LoginButton, LogoutButton }) => {
   const { user } = useAuth0();
-
+console.log(user)
   return (
     <StyledHeader>
       <StyledLogo to="/" end>

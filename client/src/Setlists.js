@@ -34,6 +34,12 @@ const Setlists = () => {
 
   return (
     <div>
+      {!setlistsData &&
+      <p>No Shows Found</p>
+}
+      { setlistsData &&
+    <div>
+
       {setlistsData.setlist.map((item) => {
         return (
           <StyledShowCard>
@@ -53,6 +59,9 @@ const Setlists = () => {
           </StyledShowCard>
         );
       })}
+      
+    </div>
+    }
     </div>
   );
 };
