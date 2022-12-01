@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const Homepage = ({LoginButton, LogoutButton, Profile, Searchbar}) => {
+const Homepage = ({ Profile, Searchbar}) => {
   const [message, setMessage] = useState("Test Failed No Message");
   const [secondMessage, setSecondMessage] = useState("Handler Test Failed");
   const [mongoMessage, setMongoMessage] = useState("Connecting...");
@@ -63,8 +63,7 @@ const Homepage = ({LoginButton, LogoutButton, Profile, Searchbar}) => {
     <StyledHomepage>
 
 
-<LoginButton />
-<LogoutButton />
+
 <Searchbar/>
 
 

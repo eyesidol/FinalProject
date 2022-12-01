@@ -9,7 +9,8 @@ const { getTestMessage,
   getArtist,
   getAllSetlist,
   getSetlist,
-  getSearchArtist
+  getSearchArtist,
+  postFavorite
   } = require("./handlers");
 
 express()
@@ -48,6 +49,7 @@ express()
   .get("/setlist/:id", getSetlist)
 .get("/search/artist/:id",getSearchArtist)
 
+.post("/post-favorite", postFavorite)
 
   .listen(port, () => {
     console.log(`Example app listening on port ${port}`);

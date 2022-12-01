@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = ({LoginButton, LogoutButton,}) => {
     return ( 
         <StyledHeader>
             <StyledLogo to="/" end>Encore</StyledLogo>
-            <StyledNavLink to="/artist/:id" end>ARTIST TEST</StyledNavLink>
-            <StyledNavLink to="/artist/setlists/:id" end>ALL SETLIST TEST</StyledNavLink>
-            <StyledNavLink to="/setlist/:id" end>SETLIST TEST</StyledNavLink>
+            <LoginButton />
+
+<LogoutButton />
+<StyledNavLink to="/favorites" end>Favorites</StyledNavLink>
             <StyledNavLink to="/profile" end>Profile</StyledNavLink>
             
             

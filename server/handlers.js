@@ -100,7 +100,7 @@ const getAllSetlist = async (req, res) => {
     const artistId = req.params.id;
     const options = {
       headers: { Accept: "application/json", "x-api-key": `${setlistKey}` },
-      decompress: true
+      decompress: true,
     };
 
     const url = `https://api.setlist.fm/rest/1.0/artist/${artistId}/setlists?p=1`;
@@ -132,7 +132,6 @@ const getSetlist = async (req, res) => {
     const result = await axios.get(url, options);
     console.log(result);
 
-
     res.status(200).json({
       status: 200,
       data: result.data,
@@ -158,7 +157,6 @@ const getSearchArtist = async (req, res) => {
     const result = await axios.get(url, options);
     console.log(result);
 
-
     res.status(200).json({
       status: 200,
       data: result.data,
@@ -171,6 +169,22 @@ const getSearchArtist = async (req, res) => {
   }
 };
 
+const postFavorite = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("finalproject");
+
+
+    const result = db.collection("favorites").insertOne(req.body)
+
+    
+
+    res.status(200).json({
+      status: 200,
+      data: result,
+    });
+
+};
 
 module.exports = {
   getTestMessage,
@@ -179,5 +193,6 @@ module.exports = {
   getArtist,
   getAllSetlist,
   getSetlist,
-  getSearchArtist
+  getSearchArtist,
+  postFavorite
 };

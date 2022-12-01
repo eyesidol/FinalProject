@@ -25,12 +25,22 @@ const Setlist = () => {
         });
     }, [setlistId]);
     
-// console.log(setlistData.artist.name)
-// console.log(setlistData.venue.name)
-// console.log(setlistData.venue.city.name)
-// console.log(setlistData.venue.city.state)
-// console.log(setlistData.tour.name)
-// console.log(setlistData.sets.set[0].song[1].name)
+    const addFavorite = () => {
+        fetch(`/post-favorite`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(
+            {setlistData}
+          ),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data +"Success!")
+          });
+      };
 
 if (isLoading) {
     return <StyledLoader/>;
@@ -43,18 +53,26 @@ if (isLoading) {
             <p>Tour: {setlistData.tour.name}</p>
             <p>Setlist</p>
 
-{setlistData.sets.set > 0 && 
+{setlistData.sets.set.length > 0 && 
             <ol>
  {setlistData.sets.set[0].song.map((item)=>{
 
     return (
-        <li>{item.name}</li>
+        <li>{item.name} {item.info}</li>
     )
 
  })}
                 
             </ol>
+
+            
 } 
+{setlistData && 
+<form>
+    <button onClick={addFavorite}> Save Setlist</button>
+
+    </form>
+}
         </StyledBody>
     );
 }
