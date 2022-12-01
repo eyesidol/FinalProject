@@ -2,8 +2,10 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { ScaleLoader } from "react-spinners";
 
 const Setlist = () => {
+    const [isLoading, setIsLoading] = useState(true)
     const params = useParams();
     const [setlistData, setSetlistData] = useState(null);
   
@@ -15,6 +17,7 @@ const Setlist = () => {
         .then((res) => res.json())
         .then((res) => {
             setSetlistData(res.data);
+            setIsLoading(false);
           console.log(res.data);
         })
         .catch((error) => {
@@ -22,12 +25,16 @@ const Setlist = () => {
         });
     }, [setlistId]);
     
-console.log(setlistData.artist.name)
-console.log(setlistData.venue.name)
-console.log(setlistData.venue.city.name)
-console.log(setlistData.venue.city.state)
-console.log(setlistData.tour.name)
-console.log(setlistData.sets.set[0].song[1].name)
+// console.log(setlistData.artist.name)
+// console.log(setlistData.venue.name)
+// console.log(setlistData.venue.city.name)
+// console.log(setlistData.venue.city.state)
+// console.log(setlistData.tour.name)
+// console.log(setlistData.sets.set[0].song[1].name)
+
+if (isLoading) {
+    return <StyledLoader/>;
+}
     return (  
         <StyledBody>
             <p>Artist: {setlistData.artist.name}</p>
@@ -90,3 +97,7 @@ justify-content: center;
 width: 400px;
 margin: 8px;
 `
+
+const StyledLoader = styled(ScaleLoader)`
+color: "#36d7b7";
+`;
