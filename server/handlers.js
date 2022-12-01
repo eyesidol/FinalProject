@@ -100,6 +100,7 @@ const getAllSetlist = async (req, res) => {
     const artistId = req.params.id;
     const options = {
       headers: { Accept: "application/json", "x-api-key": `${setlistKey}` },
+      decompress: true
     };
 
     const url = `https://api.setlist.fm/rest/1.0/artist/${artistId}/setlists?p=1`;
@@ -108,7 +109,7 @@ const getAllSetlist = async (req, res) => {
     console.log(result);
     res.status(200).json({
       status: 200,
-      data: result,
+      data: result.data,
     });
   } catch (err) {
     res.status(500).json({
@@ -131,10 +132,6 @@ const getSetlist = async (req, res) => {
     const result = await axios.get(url, options);
     console.log(result);
 
-    // zlib.gunzip(result.data, (err, buffer) => {
-    //   console.log("Decompressed data: ",buffer);
-
-    //     });
 
     res.status(200).json({
       status: 200,
