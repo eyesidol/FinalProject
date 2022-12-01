@@ -8,7 +8,8 @@ const { getTestMessage,
   getMongoItem,
   getArtist,
   getAllSetlist,
-  getSetlist
+  getSetlist,
+  getSearchArtist
   } = require("./handlers");
 
 express()
@@ -45,7 +46,7 @@ express()
   .get("/artist/setlists/:id", getAllSetlist)
   //gets a setlist based on setlist ID
   .get("/setlist/:id", getSetlist)
-
+.get("/search/artist/:id",getSearchArtist)
 
 
   .listen(port, () => {

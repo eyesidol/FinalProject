@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import styled from "styled-components";
+import { ScaleLoader } from "react-spinners";
 
 const Artist = () => {
+    const [isLoading, setIsLoading] = useState(true)
   const params = useParams();
   const [artistData, setArtistData] = useState(null);
 
@@ -14,6 +17,7 @@ const Artist = () => {
       .then((res) => res.json())
       .then((res) => {
         setArtistData(res.data);
+        setIsLoading(false);
         console.log(res.data);
       })
       .catch((error) => {
@@ -22,6 +26,10 @@ const Artist = () => {
   }, [artistId]);
 
   console.log(artistData);
+
+  if (isLoading) {
+    return <StyledLoader/>;
+}
 
   return (
   <div>
@@ -33,5 +41,10 @@ const Artist = () => {
 };
 
 export default Artist;
+
+
+const StyledLoader = styled(ScaleLoader)`
+color: "#36d7b7";
+`;
 
 

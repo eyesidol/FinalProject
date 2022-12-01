@@ -2,8 +2,10 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { ScaleLoader } from "react-spinners";
 
 const Setlist = () => {
+    const [isLoading, setIsLoading] = useState(true)
     const params = useParams();
     const [setlistData, setSetlistData] = useState(null);
   
@@ -15,6 +17,7 @@ const Setlist = () => {
         .then((res) => res.json())
         .then((res) => {
             setSetlistData(res.data);
+            setIsLoading(false);
           console.log(res.data);
         })
         .catch((error) => {
@@ -22,12 +25,16 @@ const Setlist = () => {
         });
     }, [setlistId]);
     
-console.log(setlistData.artist.name)
-console.log(setlistData.venue.name)
-console.log(setlistData.venue.city.name)
-console.log(setlistData.venue.city.state)
-console.log(setlistData.tour.name)
-console.log(setlistData.sets.set[0].song[1].name)
+// console.log(setlistData.artist.name)
+// console.log(setlistData.venue.name)
+// console.log(setlistData.venue.city.name)
+// console.log(setlistData.venue.city.state)
+// console.log(setlistData.tour.name)
+// console.log(setlistData.sets.set[0].song[1].name)
+
+if (isLoading) {
+    return <StyledLoader/>;
+}
     return (  
         <StyledBody>
             <p>Artist: {setlistData.artist.name}</p>
@@ -35,46 +42,19 @@ console.log(setlistData.sets.set[0].song[1].name)
             <p>City: {setlistData.venue.city.name}, {setlistData.venue.city.state}</p>
             <p>Tour: {setlistData.tour.name}</p>
             <p>Setlist</p>
+
+{setlistData.sets.set > 0 && 
             <ol>
-                <li>
-{setlistData.sets.set[0].song[0].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[1].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[2].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[3].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[4].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[5].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[6].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[7].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[8].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[9].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[10].name}
-                </li>
-                <li>
-{setlistData.sets.set[0].song[11].name}
-                </li>
+ {setlistData.sets.set[0].song.map((item)=>{
+
+    return (
+        <li>{item.name}</li>
+    )
+
+ })}
                 
             </ol>
-
+} 
         </StyledBody>
     );
 }
@@ -90,3 +70,7 @@ justify-content: center;
 width: 400px;
 margin: 8px;
 `
+
+const StyledLoader = styled(ScaleLoader)`
+color: "#36d7b7";
+`;
