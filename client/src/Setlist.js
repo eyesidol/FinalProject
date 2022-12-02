@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import Map from "./Map";
 const Setlist = () => {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
@@ -70,7 +70,7 @@ const Setlist = () => {
           })}
         </ol>
       )}
-      
+      <Map lat={setlistData.venue.city.coords.lat} lng={setlistData.venue.city.coords.long}/>
 
       {setlistData && isAuthenticated && (
         <form>

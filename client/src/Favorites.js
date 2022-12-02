@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
 import { useAuth0 } from "@auth0/auth0-react";
+import Map from "./Map";
 
 const Favorites = () => {
   const [setlists, setSetlists] = useState(null);
@@ -30,7 +31,7 @@ const Favorites = () => {
   return (
   <div>
 {setlists.map((item)=>{
-  
+
   if(item.data.user === user.nickname) {
 return (
   <StyledBody>
@@ -46,6 +47,7 @@ return (
             );
           })}
         </ol>
+    <Map lat={item.data.setlistData.venue.city.coords.lat} lng={item.data.setlistData.venue.city.coords.long}/>
   </StyledBody>
 )}
 

@@ -6,11 +6,11 @@ import {
 } from "@react-google-maps/api";
 
 const mapsKey = window.__RUNTIME_CONFIG__.REACT_APP_MAPS;
-console.log(mapsKey);
+
 
 const Map = ({ lat, lng }) => {
     const center = {lat: lat, lng: lng}
-    console.log(center)
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: mapsKey,
   });
