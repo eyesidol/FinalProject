@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Favorites = () => {
   const [setlists, setSetlists] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { user, isAuthenticated } = useAuth0();
+
 
   useEffect(() => {
     fetch(`/get-favorites`)
@@ -13,14 +16,13 @@ const Favorites = () => {
       .then((res) => {
         setSetlists(res.data);
         setIsLoading(false);
-        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [user]);
 
-  console.log(setlists);
+
 
   if (isLoading) {
     return <StyledLoader />;
@@ -29,6 +31,7 @@ const Favorites = () => {
   <div>
 {setlists.map((item)=>{
   
+  if(item.data.user === user.nickname) {
 return (
   <StyledBody>
   <p>{item.data.setlistData.eventDate}</p>
@@ -44,7 +47,7 @@ return (
           })}
         </ol>
   </StyledBody>
-)
+)}
 
 })}
 

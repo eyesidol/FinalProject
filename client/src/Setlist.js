@@ -3,11 +3,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Setlist = () => {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const [setlistData, setSetlistData] = useState(null);
+  const { user, isAuthenticated} = useAuth0();
+  
 
   const setlistId = params.id;
 
@@ -31,7 +34,7 @@ const Setlist = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ setlistData }),
+      body: JSON.stringify({ user: user.nickname, setlistData }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -67,7 +70,9 @@ const Setlist = () => {
           })}
         </ol>
       )}
-      {setlistData && (
+      
+
+      {setlistData && isAuthenticated && (
         <form>
           <button onClick={addFavorite}> Save Setlist</button>
         </form>
