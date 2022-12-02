@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
 import { NavLink } from "react-router-dom";
+import Map from "./Map";
 
 const Setlists = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +54,10 @@ const Setlists = () => {
                   {item.venue.city.coords.long}
                 </p>
                 <p>{item.venue.city.country.name}</p>
+
+                <Map lat={item.venue.city.coords.lat} lng={item.venue.city.coords.long}/>
               </StyledShowCard>
+              
             );
           })}
         </div>

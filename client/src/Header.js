@@ -3,22 +3,25 @@ import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = ({ LoginButton, LogoutButton }) => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   return (
     <StyledHeader>
       <StyledLogo to="/" end>
         Encore
       </StyledLogo>
-      {!user && <LoginButton />}
-      {user && <LogoutButton />}
-
-      <StyledNavLink to="/favorites" end>
-        Favorites
-      </StyledNavLink>
-      <StyledNavLink to="/profile" end>
-        Profile
-      </StyledNavLink>
+      {!isAuthenticated && <LoginButton />}
+      {isAuthenticated && <LogoutButton />}
+      {isAuthenticated && (
+        <StyledNavLink to="/favorites" end>
+          Favorites
+        </StyledNavLink>
+      )}
+      {isAuthenticated && (
+        <StyledNavLink to="/profile" end>
+          Profile
+        </StyledNavLink>
+      )}
     </StyledHeader>
   );
 };
