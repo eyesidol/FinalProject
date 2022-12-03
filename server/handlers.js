@@ -1,8 +1,6 @@
 const zlib = require("zlib");
 const axios = require("axios");
 
-
-
 const { v4: uuidv4 } = require("uuid");
 
 const { MongoClient } = require("mongodb");
@@ -131,7 +129,6 @@ const postFavorite = async (req, res) => {
 };
 
 const getFavorites = async (req, res) => {
-
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("finalproject");

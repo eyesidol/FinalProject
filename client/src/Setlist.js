@@ -9,8 +9,7 @@ const Setlist = () => {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const [setlistData, setSetlistData] = useState(null);
-  const { user, isAuthenticated} = useAuth0();
-  
+  const { user, isAuthenticated } = useAuth0();
 
   const setlistId = params.id;
 
@@ -70,7 +69,10 @@ const Setlist = () => {
           })}
         </ol>
       )}
-      <Map lat={setlistData.venue.city.coords.lat} lng={setlistData.venue.city.coords.long}/>
+      <Map
+        lat={setlistData.venue.city.coords.lat}
+        lng={setlistData.venue.city.coords.long}
+      />
 
       {setlistData && isAuthenticated && (
         <form>

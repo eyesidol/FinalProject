@@ -55,9 +55,11 @@ const Setlists = () => {
                 </p>
                 <p>{item.venue.city.country.name}</p>
 
-                <Map lat={item.venue.city.coords.lat} lng={item.venue.city.coords.long}/>
+                <Map
+                  lat={item.venue.city.coords.lat}
+                  lng={item.venue.city.coords.long}
+                />
               </StyledShowCard>
-              
             );
           })}
         </div>

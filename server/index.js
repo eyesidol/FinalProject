@@ -20,7 +20,6 @@ express()
   .use(helmet())
   .use(morgan("tiny"))
 
-
   //gets single artist based on id
   .get("/artist/:id", getArtist)
   //gets all setlists for an artist based on id

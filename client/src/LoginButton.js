@@ -4,16 +4,20 @@ import styled from "styled-components";
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <StyledLoginButton onClick={() => loginWithRedirect()}>Log In</StyledLoginButton>;
+  return (
+    <StyledLoginButton onClick={() => loginWithRedirect()}>
+      Log In
+    </StyledLoginButton>
+  );
 };
 
 export default LoginButton;
 
-const StyledLoginButton = styled.button `
+const StyledLoginButton = styled.button`
   background-color: #161748;
   border: 2px solid #f95d9b;
   text-decoration: none;
-  color:#f95d9b;
+  color: #f95d9b;
   margin: 2px;
   padding: 3px;
   font-size: 20px;
@@ -37,4 +41,4 @@ const StyledLoginButton = styled.button `
   &.active {
     color: #f95d9b;
   }
-`
+`;

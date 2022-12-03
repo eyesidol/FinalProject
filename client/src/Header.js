@@ -18,9 +18,12 @@ const Header = ({ LoginButton, LogoutButton }) => {
         </StyledNavLink>
       )}
       {isAuthenticated && (
-        <StyledNavLink to="/profile" end>
-          Profile
-        </StyledNavLink>
+        <div>
+          <StyledNavLink to="/profile" end>
+            Profile
+          </StyledNavLink>
+          <StyledPicture src={user.picture} />
+        </div>
       )}
     </StyledHeader>
   );
@@ -75,4 +78,10 @@ const StyledNavLink = styled(NavLink)`
   &.active {
     color: #f95d9b;
   }
+`;
+
+const StyledPicture = styled.img`
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
 `;
