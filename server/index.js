@@ -10,6 +10,7 @@ const {
   getSearchArtist,
   postFavorite,
   getFavorites,
+  getVideos
 } = require("./handlers");
 
 express()
@@ -30,6 +31,9 @@ express()
 
   .post("/post-favorite", postFavorite)
   .get("/get-favorites", getFavorites)
+
+  .get("/get-videos/:id", getVideos)
+
 
   .listen(port, () => {
     console.log(`Example app listening on port ${port}`);

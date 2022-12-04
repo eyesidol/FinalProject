@@ -10,7 +10,7 @@ const Setlist = () => {
   const params = useParams();
   const [setlistData, setSetlistData] = useState(null);
   const { user, isAuthenticated } = useAuth0();
-
+const [searchTerm, setSearchTem] = useState(null)
   const setlistId = params.id;
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const Setlist = () => {
         setSetlistData(res.data);
         setIsLoading(false);
         console.log(res.data);
+        setSearchTem(res.data.artist.name)
       })
       .catch((error) => {
         console.log(error);
@@ -40,6 +41,18 @@ const Setlist = () => {
         console.log(data + "Success!");
       });
   };
+
+  useEffect(() => {
+    fetch(`/get-videos/${searchTerm}`)
+      .then((res) => res.json())
+      .then((res) => {
+  
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [searchTerm]);
 
   if (isLoading) {
     return <StyledLoader />;
