@@ -56,7 +56,7 @@ const Setlist = () => {
           <p>Date: {setlistData.eventDate}</p>
         </div>
       )}
-      <p>Setlist</p>
+      <p>Set List</p>
 
       {setlistData.sets.set.length > 0 && (
         <ol>

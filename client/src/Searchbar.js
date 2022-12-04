@@ -23,7 +23,7 @@ const Searchbar = () => {
   console.log(search);
   return (
     <div>
-      <p>Enter an artist name to view setlists</p>
+      <p>Enter an artist name to view set lists</p>
       <div>
         <button onClick={handleSubmit}>Search</button>{" "}
         <input
