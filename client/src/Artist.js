@@ -18,7 +18,7 @@ const Artist = () => {
       .then((res) => {
         setArtistData(res.data);
         setIsLoading(false);
-        console.log(res.data);
+    
       })
       .catch((error) => {
         console.log(error);
