@@ -21,7 +21,7 @@ const Favorites = () => {
         console.log(error);
       });
   }, [user]);
-  console.log(setlists);
+
 
   if (isLoading) {
     return <StyledLoader />;

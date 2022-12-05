@@ -14,13 +14,13 @@ const Searchbar = () => {
       .then((res) => {
         setSearch(res.data);
         //   setIsLoading(false);
-        console.log(res.data);
+   
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  console.log(search);
+
   return (
     <StyledSearchPage>
       <h3>Search By Artist</h3>
