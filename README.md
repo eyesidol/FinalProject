@@ -17,10 +17,10 @@ In addition to that, I could use https://www.theaudiodb.com/ to pull YouTube vid
 
 Finally, you could then generate a Spotify playlist based on that anticipated set list to get into the mood for the concert. This is especially great if it’s for a band you have never seen.
 ### Features
-    - View upcoming concerts near you
-    - Show the set list the band is anticipated to play for that concert
-    - Show YouTube videos and images from the artists recent live shows
-    - Generate a playlist based on the set list
+    - View upcoming concerts near you (NOT ABLE TO DO, SONGKICK API DOWN. TICKETMASTER API DOES NOT SUIT THIS
+    - Show the set list the band is anticipated to play for that concert (NOT ADDED, BUT ITS BETTER TO JUST VIEW PAST SETLISTS TO GET THIS INFO)
+    - Show YouTube videos and images from the artists recent live shows (THOUGHT AUDI DB API WOULD GIVE LIVE SHOW PHOTOS BUT IT DID NOT)
+    - Generate a playlist based on the set list ( STRETCH)
     - Save a list of upcoming shows you are interested in
     - Save a list of set lists from shows you have seen / want to see
     - User login (auth0)
