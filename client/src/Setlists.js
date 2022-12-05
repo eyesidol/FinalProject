@@ -34,11 +34,11 @@ const Setlists = () => {
   }
 
   return (
-    <div>
+    <StyledSetlistsPage>
       {!setlistsData && <p>No Shows Found</p>}
       {setlistsData && (
         <div>
-          <h1>Recent Set Lists</h1>
+          <h1>Recent Performances</h1>
           {setlistsData.setlist.map((item) => {
             return (
               <StyledShowCard>
@@ -46,12 +46,12 @@ const Setlists = () => {
                 <StyledSetlistNavlink to={`/setlist/${item.id}`} end>
                   Go to Setlist
                 </StyledSetlistNavlink>
-                <StyledSetlistNavlink to={`/artist/${item.artist.mbid}`} end>
+                <StyledSetlistNavlink to={`/artist/${item.artist.name}`} end>
                   Go to artist
                 </StyledSetlistNavlink>
                 <p>{item.venue.name}</p>
                 <p>
-                  {item.venue.city.name},{item.venue.city.state}
+                  {item.venue.city.name}, {item.venue.city.state}
                 </p>
                 <p>{item.venue.city.country.name}</p>
 
@@ -64,11 +64,21 @@ const Setlists = () => {
           })}
         </div>
       )}
-    </div>
+    </StyledSetlistsPage>
   );
 };
 
 export default Setlists;
+
+const StyledSetlistsPage = styled.div `
+
+
+h1 {
+  color:#f95d9b;
+  text-align: center;
+  
+}
+`
 
 const StyledLoader = styled(ScaleLoader)`
   color: "#36d7b7";
@@ -80,17 +90,24 @@ const StyledShowCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 400px;
+  width: 800px;
   margin: 8px;
+
+  
+  
 `;
 
 const StyledSetlistNavlink = styled(NavLink)`
   background-color: #161748;
   border: 2px solid #f95d9b;
   text-decoration: none;
-  margin: 2px;
-  padding: 3px;
+  margin: 6px;
+  padding: 8px;
   font-size: 20px;
+  box-shadow: 3px 4px 0px 0px #f95d9b;
+  border-radius: 5px;
+
+
 
   &:link {
     text-decoration: none;
@@ -104,7 +121,7 @@ const StyledSetlistNavlink = styled(NavLink)`
 
   &:hover {
     background-color: #7375b6;
-    color: #f95d9b;
+    color: #f5bb09;
     border-radius: 10px;
   }
 

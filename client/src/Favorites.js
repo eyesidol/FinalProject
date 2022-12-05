@@ -21,19 +21,20 @@ const Favorites = () => {
         console.log(error);
       });
   }, [user]);
+  console.log(setlists);
 
   if (isLoading) {
     return <StyledLoader />;
   }
   return (
-    <div>
+    <StyledFavoritesPage>
       {setlists.map((item) => {
         if (item.data.user === user.nickname) {
           return (
             <StyledBody>
+              <h2>{item.data.setlistData.artist.name}</h2>
               <p>{item.data.setlistData.eventDate}</p>
               <p>{item.data.setlistData.venue.name}</p>
-              <p>{item.data.setlistData.artist.name}</p>
               <ol>
                 {item.data.setlistData.sets.set[0].song.map((item) => {
                   return (
@@ -43,6 +44,7 @@ const Favorites = () => {
                   );
                 })}
               </ol>
+
               <Map
                 lat={item.data.setlistData.venue.city.coords.lat}
                 lng={item.data.setlistData.venue.city.coords.long}
@@ -51,7 +53,7 @@ const Favorites = () => {
           );
         }
       })}
-    </div>
+    </StyledFavoritesPage>
   );
 };
 
@@ -62,11 +64,25 @@ const StyledLoader = styled(ScaleLoader)`
 `;
 
 const StyledBody = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 400px;
+  width: 800px;
   margin: 8px;
+
+  h2 {
+    color:#f95d9b;
+  }
+`;
+
+const StyledFavoritesPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 `;

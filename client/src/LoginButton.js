@@ -21,6 +21,8 @@ const StyledLoginButton = styled.button`
   margin: 2px;
   padding: 3px;
   font-size: 20px;
+  box-shadow: 3px 4px 0px 0px #f95d9b;
+  border-radius: 5px;
 
   &:link {
     text-decoration: none;
@@ -34,7 +36,7 @@ const StyledLoginButton = styled.button`
 
   &:hover {
     background-color: #7375b6;
-    color: #f95d9b;
+    color: #f5bb09;
     border-radius: 10px;
   }
 

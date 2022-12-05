@@ -18,13 +18,16 @@ const Header = ({ LoginButton, LogoutButton }) => {
         </StyledNavLink>
       )}
       {isAuthenticated && (
-        <div>
+
           <StyledNavLink to="/profile" end>
             Profile
           </StyledNavLink>
-          <StyledPicture src={user.picture} />
-        </div>
+
       )}
+  
+{ isAuthenticated &&
+          <StyledPicture src={user.picture} />
+}
     </StyledHeader>
   );
 };
@@ -39,6 +42,7 @@ const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 `;
 
 const StyledLogo = styled(NavLink)`
@@ -49,6 +53,7 @@ const StyledLogo = styled(NavLink)`
   font-size: 70px;
   font-family: "Lalezar", cursive;
   color: #2fe1b9;
+  
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -58,6 +63,8 @@ const StyledNavLink = styled(NavLink)`
   margin: 2px;
   padding: 3px;
   font-size: 20px;
+  box-shadow: 3px 4px 0px 0px #f95d9b;
+  border-radius: 5px;
 
   &:link {
     text-decoration: none;
@@ -71,11 +78,11 @@ const StyledNavLink = styled(NavLink)`
 
   &:hover {
     background-color: #7375b6;
-    color: #f95d9b;
+    color: #f5bb09;
     border-radius: 10px;
   }
 
-  &.active {
+  &:active {
     color: #f95d9b;
   }
 `;
@@ -84,4 +91,5 @@ const StyledPicture = styled.img`
   border-radius: 100px;
   width: 80px;
   height: 80px;
+  border: 2px solid #f95d9b;
 `;
