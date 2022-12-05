@@ -18,7 +18,6 @@ const Artist = () => {
       .then((res) => {
         setArtistData(res.data);
         setIsLoading(false);
-    
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +25,7 @@ const Artist = () => {
   }, [artistId]);
 
   if (isLoading) {
-    return <StyledLoader />;
+    return <StyledLoader color={"#36d7b7"} />;
   }
 
   return (
@@ -112,7 +111,10 @@ const Artist = () => {
 export default Artist;
 
 const StyledLoader = styled(ScaleLoader)`
-  color: "#36d7b7";
+  position: absolute;
+  top: 300px;
+  left: 45%;
+  z-index: 5;
 `;
 
 const StyledArtisImage = styled.img`

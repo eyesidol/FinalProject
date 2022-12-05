@@ -12,7 +12,6 @@ const Setlists = () => {
   const [setlistsData, setSetlistsData] = useState(null);
 
   const artistId = params.id;
-  // console.log(artistId)
 
   useEffect(() => {
     fetch(`/artist/setlists/${artistId}`)
@@ -20,17 +19,14 @@ const Setlists = () => {
       .then((res) => {
         setSetlistsData(res.data);
         setIsLoading(false);
-        //   console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [artistId]);
 
-  // console.log(setlistsData.setlist[0].id);
-
   if (isLoading) {
-    return <StyledLoader />;
+    return <StyledLoader color={"#36d7b7"} />;
   }
 
   return (
@@ -70,18 +66,18 @@ const Setlists = () => {
 
 export default Setlists;
 
-const StyledSetlistsPage = styled.div `
-
-
-h1 {
-  color:#f95d9b;
-  text-align: center;
-  
-}
-`
+const StyledSetlistsPage = styled.div`
+  h1 {
+    color: #f95d9b;
+    text-align: center;
+  }
+`;
 
 const StyledLoader = styled(ScaleLoader)`
-  color: "#36d7b7";
+  position: absolute;
+  top: 300px;
+  left: 45%;
+  z-index: 5;
 `;
 
 const StyledShowCard = styled.div`
@@ -92,9 +88,6 @@ const StyledShowCard = styled.div`
   justify-content: center;
   width: 800px;
   margin: 8px;
-
-  
-  
 `;
 
 const StyledSetlistNavlink = styled(NavLink)`
@@ -106,8 +99,6 @@ const StyledSetlistNavlink = styled(NavLink)`
   font-size: 20px;
   box-shadow: 3px 4px 0px 0px #f95d9b;
   border-radius: 5px;
-
-
 
   &:link {
     text-decoration: none;

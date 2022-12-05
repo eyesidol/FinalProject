@@ -4,7 +4,6 @@ const Homepage = ({ Profile, Searchbar }) => {
   return (
     <StyledHomepage>
       <Searchbar />
-
     </StyledHomepage>
   );
 };

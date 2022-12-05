@@ -10,7 +10,7 @@ import GlobalStyle from "./GlobalStyles";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
-// pass profile down?
+
 import Header from "./Header";
 import Footer from "./Footer";
 import Searchbar from "./Searchbar";
