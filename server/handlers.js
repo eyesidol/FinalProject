@@ -160,8 +160,8 @@ const getVideos = async (req, res) => {
     const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${search}&key=${mapsKey}`
 
     const result = await axios.get(url, options);
-    console.log(result);
-console.log(result.data)
+//     console.log(result);
+// console.log(result.data)
     res.status(200).json({
       status: 200,
       data: result.data,

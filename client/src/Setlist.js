@@ -5,10 +5,12 @@ import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
 import { useAuth0 } from "@auth0/auth0-react";
 import Map from "./Map";
+import YouTube from 'react-youtube';
 const Setlist = () => {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const [setlistData, setSetlistData] = useState(null);
+  const [videoData, setVideoData] = useState(null);
   const { user, isAuthenticated } = useAuth0();
 const [searchTerm, setSearchTem] = useState(null)
   const setlistId = params.id;
@@ -20,7 +22,7 @@ const [searchTerm, setSearchTem] = useState(null)
         setSetlistData(res.data);
         setIsLoading(false);
         console.log(res.data);
-        setSearchTem(res.data.artist.name)
+        setSearchTem(res.data.artist.name + " live" + " " + res.data.venue.city.name + " " + res.data.eventDate )
       })
       .catch((error) => {
         console.log(error);
@@ -46,7 +48,7 @@ const [searchTerm, setSearchTem] = useState(null)
     fetch(`/get-videos/${searchTerm}`)
       .then((res) => res.json())
       .then((res) => {
-  
+        setVideoData(res.data)
         console.log(res.data);
       })
       .catch((error) => {
@@ -92,6 +94,16 @@ const [searchTerm, setSearchTem] = useState(null)
           <button onClick={addFavorite}> Save Setlist</button>
         </form>
       )}
+<h1>Videos</h1>
+
+      {videoData && videoData.items.map((item)=>{
+        return (
+          <div>
+            <YouTube videoId={item.id.videoId} />
+          </div>
+        )
+      })}
+      
     </StyledBody>
   );
 };
