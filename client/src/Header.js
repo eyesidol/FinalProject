@@ -18,16 +18,12 @@ const Header = ({ LoginButton, LogoutButton }) => {
         </StyledNavLink>
       )}
       {isAuthenticated && (
-
-          <StyledNavLink to="/profile" end>
-            Profile
-          </StyledNavLink>
-
+        <StyledNavLink to="/profile" end>
+          Profile
+        </StyledNavLink>
       )}
-  
-{ isAuthenticated &&
-          <StyledPicture src={user.picture} />
-}
+
+      {isAuthenticated && <StyledPicture src={user.picture} />}
     </StyledHeader>
   );
 };
@@ -42,7 +38,6 @@ const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 `;
 
 const StyledLogo = styled(NavLink)`
@@ -53,7 +48,6 @@ const StyledLogo = styled(NavLink)`
   font-size: 70px;
   font-family: "Lalezar", cursive;
   color: #2fe1b9;
-  
 `;
 
 const StyledNavLink = styled(NavLink)`

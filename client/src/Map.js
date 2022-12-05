@@ -1,5 +1,6 @@
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import styled from "styled-components";
+import { ScaleLoader } from "react-spinners";
 const mapsKey = window.__RUNTIME_CONFIG__.REACT_APP_MAPS;
 
 const Map = ({ lat, lng }) => {
@@ -9,7 +10,9 @@ const Map = ({ lat, lng }) => {
     googleMapsApiKey: mapsKey,
   });
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) {
+    return <StyledLoader color={"#36d7b7"} />;
+  }
   return (
     <StyledMap>
       <GoogleMap
@@ -29,7 +32,13 @@ const Map = ({ lat, lng }) => {
 export default Map;
 
 const StyledMap = styled.div`
-border: 3px solid #2fe1b9 ;
-margin: 10px;
+  border: 3px solid #2fe1b9;
+  margin: 10px;
+`;
 
-`
+const StyledLoader = styled(ScaleLoader)`
+  position: absolute;
+  top: 300px;
+  left: 45%;
+  z-index: 5;
+`;

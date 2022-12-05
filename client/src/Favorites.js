@@ -22,9 +22,8 @@ const Favorites = () => {
       });
   }, [user]);
 
-
   if (isLoading) {
-    return <StyledLoader />;
+    return <StyledLoader color={"#36d7b7"} />;
   }
   return (
     <StyledFavoritesPage>
@@ -60,7 +59,10 @@ const Favorites = () => {
 export default Favorites;
 
 const StyledLoader = styled(ScaleLoader)`
-  color: "#36d7b7";
+  position: absolute;
+  top: 300px;
+  left: 45%;
+  z-index: 5;
 `;
 
 const StyledBody = styled.div`
@@ -75,7 +77,7 @@ const StyledBody = styled.div`
   margin: 8px;
 
   h2 {
-    color:#f95d9b;
+    color: #f95d9b;
   }
 `;
 

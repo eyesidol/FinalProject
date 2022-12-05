@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { ScaleLoader } from "react-spinners";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,14 +7,14 @@ const Searchbar = () => {
   // const [isLoading, setIsLoading] = useState(true)
   const [search, setSearch] = useState(null);
   const [value, setValue] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSubmit = () => {
     fetch(`/search/artist/${encodeURI(value)}`)
       .then((res) => res.json())
       .then((res) => {
         setSearch(res.data);
-        //   setIsLoading(false);
-   
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -57,6 +57,13 @@ const Searchbar = () => {
 };
 
 export default Searchbar;
+
+const StyledLoader = styled(ScaleLoader)`
+  position: absolute;
+  top: 300px;
+  left: 45%;
+  z-index: 5;
+`;
 
 const StyledArtistNavlink = styled(NavLink)`
   text-decoration: none;

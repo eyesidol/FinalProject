@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
 import { useAuth0 } from "@auth0/auth0-react";
 import Map from "./Map";
-import YouTube from 'react-youtube';
+import YouTube from "react-youtube";
 import { NavLink } from "react-router-dom";
 
 const Setlist = () => {
@@ -14,7 +14,7 @@ const Setlist = () => {
   const [setlistData, setSetlistData] = useState(null);
   const [videoData, setVideoData] = useState(null);
   const { user, isAuthenticated } = useAuth0();
-const [searchTerm, setSearchTem] = useState(null)
+  const [searchTerm, setSearchTem] = useState(null);
   const setlistId = params.id;
 
   useEffect(() => {
@@ -24,7 +24,14 @@ const [searchTerm, setSearchTem] = useState(null)
         setSetlistData(res.data);
         setIsLoading(false);
 
-        setSearchTem(res.data.artist.name + " live" + " " + res.data.venue.city.name + " " + res.data.eventDate )
+        setSearchTem(
+          res.data.artist.name +
+            " live" +
+            " " +
+            res.data.venue.city.name +
+            " " +
+            res.data.eventDate
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -46,13 +53,11 @@ const [searchTerm, setSearchTem] = useState(null)
       });
   };
 
-
   useEffect(() => {
     fetch(`/get-videos/${searchTerm}`)
       .then((res) => res.json())
       .then((res) => {
-        setVideoData(res.data)
-
+        setVideoData(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -60,13 +65,15 @@ const [searchTerm, setSearchTem] = useState(null)
   }, [searchTerm]);
 
   if (isLoading) {
-    return <StyledLoader />;
+    return <StyledLoader color={"#36d7b7"} />;
   }
   return (
     <StyledBody>
       {setlistData && (
         <div>
-          <StyledArtistLink to={`/artist/${setlistData.artist.name}`} end>{setlistData.artist.name}</StyledArtistLink>
+          <StyledArtistLink to={`/artist/${setlistData.artist.name}`} end>
+            {setlistData.artist.name}
+          </StyledArtistLink>
           <p>{setlistData.venue.name}</p>
           <p>
             {setlistData.venue.city.name}, {setlistData.venue.city.state}
@@ -87,9 +94,12 @@ const [searchTerm, setSearchTem] = useState(null)
           })}
         </ol>
       )}
-            {setlistData && isAuthenticated && (
+      {setlistData && isAuthenticated && (
         <form>
-          <StyledSaveButton onClick={addFavorite}> Save Setlist</StyledSaveButton>
+          <StyledSaveButton onClick={addFavorite}>
+            {" "}
+            Save Setlist
+          </StyledSaveButton>
         </form>
       )}
       <Map
@@ -97,17 +107,16 @@ const [searchTerm, setSearchTem] = useState(null)
         lng={setlistData.venue.city.coords.long}
       />
 
+      <h1>Videos</h1>
 
-<h1>Videos</h1>
-
-      {videoData && videoData.items.map((item)=>{
-        return (
-          <div>
-            <YouTube videoId={item.id.videoId} />
-          </div>
-        )
-      })}
-      
+      {videoData &&
+        videoData.items.map((item) => {
+          return (
+            <div>
+              <YouTube videoId={item.id.videoId} />
+            </div>
+          );
+        })}
     </StyledBody>
   );
 };
@@ -122,21 +131,23 @@ const StyledBody = styled.div`
   justify-content: center;
   width: 800px;
   margin: 8px;
-margin-top: 40px;
-margin-bottom: 40px;
-padding-top: 20px;
-h2 {
-  color: #f95d9b;
-}
-
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-top: 20px;
+  h2 {
+    color: #f95d9b;
+  }
 `;
 
 const StyledLoader = styled(ScaleLoader)`
-  color: "#36d7b7";
+  position: absolute;
+  top: 300px;
+  left: 45%;
+  z-index: 5;
 `;
 
-const StyledArtistLink = styled(NavLink) `
- background-color: #161748;
+const StyledArtistLink = styled(NavLink)`
+  background-color: #161748;
   border: 2px solid #f5bb09;
   text-decoration: none;
   color: #f5bb09;
@@ -165,10 +176,10 @@ const StyledArtistLink = styled(NavLink) `
   &.active {
     color: #f5bb09;
   }
-`
+`;
 
-const StyledSaveButton = styled.button `
- background-color: #161748;
+const StyledSaveButton = styled.button`
+  background-color: #161748;
   border: 2px solid #f5bb09;
   text-decoration: none;
   color: #f5bb09;
@@ -197,4 +208,4 @@ const StyledSaveButton = styled.button `
   &.active {
     color: #f5bb09;
   }
-`
+`;
