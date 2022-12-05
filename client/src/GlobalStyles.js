@@ -2,12 +2,18 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
-    padding: 0;
+
     background: #161748;
     font-family: Open-Sans, Helvetica, Sans-Serif;
     color:#2fe1b9;
+    
+    max-width: 70ch;
+
+  margin: auto;
+  line-height: 1.75;
+  font-size: 1.25em;
   }
+
 `;
 
 // PURPLE #14192f

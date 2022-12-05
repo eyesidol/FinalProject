@@ -6,6 +6,8 @@ import { ScaleLoader } from "react-spinners";
 import { useAuth0 } from "@auth0/auth0-react";
 import Map from "./Map";
 import YouTube from 'react-youtube';
+import { NavLink } from "react-router-dom";
+
 const Setlist = () => {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
@@ -21,7 +23,7 @@ const [searchTerm, setSearchTem] = useState(null)
       .then((res) => {
         setSetlistData(res.data);
         setIsLoading(false);
-        console.log(res.data);
+
         setSearchTem(res.data.artist.name + " live" + " " + res.data.venue.city.name + " " + res.data.eventDate )
       })
       .catch((error) => {
@@ -44,12 +46,13 @@ const [searchTerm, setSearchTem] = useState(null)
       });
   };
 
+
   useEffect(() => {
     fetch(`/get-videos/${searchTerm}`)
       .then((res) => res.json())
       .then((res) => {
         setVideoData(res.data)
-        console.log(res.data);
+
       })
       .catch((error) => {
         console.log(error);
@@ -63,15 +66,15 @@ const [searchTerm, setSearchTem] = useState(null)
     <StyledBody>
       {setlistData && (
         <div>
-          <p>Artist: {setlistData.artist.name}</p>
-          <p>Venue: {setlistData.venue.name}</p>
+          <StyledArtistLink to={`/artist/${setlistData.artist.name}`} end>{setlistData.artist.name}</StyledArtistLink>
+          <p>{setlistData.venue.name}</p>
           <p>
-            City: {setlistData.venue.city.name}, {setlistData.venue.city.state}
+            {setlistData.venue.city.name}, {setlistData.venue.city.state}
           </p>
-          <p>Date: {setlistData.eventDate}</p>
+          <p>{setlistData.eventDate}</p>
         </div>
       )}
-      <p>Set List</p>
+      <h2>Set List</h2>
 
       {setlistData.sets.set.length > 0 && (
         <ol>
@@ -84,16 +87,17 @@ const [searchTerm, setSearchTem] = useState(null)
           })}
         </ol>
       )}
+            {setlistData && isAuthenticated && (
+        <form>
+          <StyledSaveButton onClick={addFavorite}> Save Setlist</StyledSaveButton>
+        </form>
+      )}
       <Map
         lat={setlistData.venue.city.coords.lat}
         lng={setlistData.venue.city.coords.long}
       />
 
-      {setlistData && isAuthenticated && (
-        <form>
-          <button onClick={addFavorite}> Save Setlist</button>
-        </form>
-      )}
+
 <h1>Videos</h1>
 
       {videoData && videoData.items.map((item)=>{
@@ -116,10 +120,81 @@ const StyledBody = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 400px;
+  width: 800px;
   margin: 8px;
+margin-top: 40px;
+margin-bottom: 40px;
+padding-top: 20px;
+h2 {
+  color: #f95d9b;
+}
+
 `;
 
 const StyledLoader = styled(ScaleLoader)`
   color: "#36d7b7";
 `;
+
+const StyledArtistLink = styled(NavLink) `
+ background-color: #161748;
+  border: 2px solid #f5bb09;
+  text-decoration: none;
+  color: #f5bb09;
+  margin: 2px;
+  padding: 3px;
+  font-size: 20px;
+  box-shadow: 3px 4px 0px 0px #f5bb09;
+  border-radius: 5px;
+
+  &:link {
+    text-decoration: none;
+    color: #f5bb09;
+  }
+
+  &:visited {
+    text-decoration: none;
+    color: #f5bb09;
+  }
+
+  &:hover {
+    background-color: #7375b6;
+    color: #f5bb09;
+    border-radius: 10px;
+  }
+
+  &.active {
+    color: #f5bb09;
+  }
+`
+
+const StyledSaveButton = styled.button `
+ background-color: #161748;
+  border: 2px solid #f5bb09;
+  text-decoration: none;
+  color: #f5bb09;
+  margin: 2px;
+  padding: 3px;
+  font-size: 20px;
+  box-shadow: 3px 4px 0px 0px #f5bb09;
+  border-radius: 5px;
+
+  &:link {
+    text-decoration: none;
+    color: #f5bb09;
+  }
+
+  &:visited {
+    text-decoration: none;
+    color: #f5bb09;
+  }
+
+  &:hover {
+    background-color: #7375b6;
+    color: #f5bb09;
+    border-radius: 10px;
+  }
+
+  &.active {
+    color: #f5bb09;
+  }
+`
