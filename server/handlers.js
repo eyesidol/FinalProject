@@ -1,8 +1,6 @@
 const zlib = require("zlib");
 const axios = require("axios");
 
-
-
 const { v4: uuidv4 } = require("uuid");
 
 const { MongoClient } = require("mongodb");
@@ -16,7 +14,8 @@ const options = {
 };
 
 const setlistKey = process.env.SETLIST_KEY;
-
+const mapsKey = process.env.MAPS_KEY
+console.log(mapsKey)
 const getArtist = async (req, res) => {
   try {
     const artistId = req.params.id;
@@ -131,7 +130,6 @@ const postFavorite = async (req, res) => {
 };
 
 const getFavorites = async (req, res) => {
-
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("finalproject");
@@ -145,6 +143,37 @@ const getFavorites = async (req, res) => {
   });
 };
 
+const getVideos = async (req, res) => {
+  try {
+    console.log(req.params.id)
+    const search = req.params.id;
+    const options = {
+      params:{
+        key: mapsKey,
+        part: 'snippet',
+        maxResults: 5
+      },
+      headers: { Accept: "application/json"},
+
+    };
+
+    const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${search}&key=${mapsKey}`
+
+    const result = await axios.get(url, options);
+//     console.log(result);
+// console.log(result.data)
+    res.status(200).json({
+      status: 200,
+      data: result.data,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: err,
+    });
+  }
+};
+
 module.exports = {
   getArtist,
   getAllSetlist,
@@ -152,4 +181,5 @@ module.exports = {
   getSearchArtist,
   postFavorite,
   getFavorites,
+  getVideos
 };

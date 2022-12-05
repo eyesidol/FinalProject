@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { ScaleLoader } from "react-spinners";
 import { useAuth0 } from "@auth0/auth0-react";
+import Map from "./Map";
 
 const Favorites = () => {
   const [setlists, setSetlists] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { user, isAuthenticated } = useAuth0();
-
+  const { user } = useAuth0();
 
   useEffect(() => {
     fetch(`/get-favorites`)
@@ -22,36 +22,36 @@ const Favorites = () => {
       });
   }, [user]);
 
-
-
   if (isLoading) {
     return <StyledLoader />;
   }
   return (
-  <div>
-{setlists.map((item)=>{
-  
-  if(item.data.user === user.nickname) {
-return (
-  <StyledBody>
-  <p>{item.data.setlistData.eventDate}</p>
-  <p>{item.data.setlistData.venue.name}</p>
-  <p>{item.data.setlistData.artist.name}</p>
-  <ol>
-          {item.data.setlistData.sets.set[0].song.map((item) => {
-            return (
-              <li>
-                {item.name} {item.info}
-              </li>
-            );
-          })}
-        </ol>
-  </StyledBody>
-)}
-
-})}
-
-  </div>
+    <div>
+      {setlists.map((item) => {
+        if (item.data.user === user.nickname) {
+          return (
+            <StyledBody>
+              <p>{item.data.setlistData.eventDate}</p>
+              <p>{item.data.setlistData.venue.name}</p>
+              <p>{item.data.setlistData.artist.name}</p>
+              <ol>
+                {item.data.setlistData.sets.set[0].song.map((item) => {
+                  return (
+                    <li>
+                      {item.name} {item.info}
+                    </li>
+                  );
+                })}
+              </ol>
+              <Map
+                lat={item.data.setlistData.venue.city.coords.lat}
+                lng={item.data.setlistData.venue.city.coords.long}
+              />
+            </StyledBody>
+          );
+        }
+      })}
+    </div>
   );
 };
 

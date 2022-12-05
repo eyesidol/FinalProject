@@ -38,6 +38,7 @@ const Setlists = () => {
       {!setlistsData && <p>No Shows Found</p>}
       {setlistsData && (
         <div>
+          <h1>Recent Set Lists</h1>
           {setlistsData.setlist.map((item) => {
             return (
               <StyledShowCard>
@@ -45,19 +46,20 @@ const Setlists = () => {
                 <StyledSetlistNavlink to={`/setlist/${item.id}`} end>
                   Go to Setlist
                 </StyledSetlistNavlink>
+                <StyledSetlistNavlink to={`/artist/${item.artist.mbid}`} end>
+                  Go to artist
+                </StyledSetlistNavlink>
                 <p>{item.venue.name}</p>
                 <p>
                   {item.venue.city.name},{item.venue.city.state}
                 </p>
-                <p>
-                  this will be google map {item.venue.city.coords.lat},
-                  {item.venue.city.coords.long}
-                </p>
                 <p>{item.venue.city.country.name}</p>
 
-                <Map lat={item.venue.city.coords.lat} lng={item.venue.city.coords.long}/>
+                <Map
+                  lat={item.venue.city.coords.lat}
+                  lng={item.venue.city.coords.long}
+                />
               </StyledShowCard>
-              
             );
           })}
         </div>

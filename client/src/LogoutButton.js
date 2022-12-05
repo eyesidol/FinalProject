@@ -5,7 +5,9 @@ const LogoutButton = () => {
   const { logout } = useAuth0();
 
   return (
-    <StyledLogoutButton onClick={() => logout({ returnTo: window.location.origin })}>
+    <StyledLogoutButton
+      onClick={() => logout({ returnTo: window.location.origin })}
+    >
       Log Out
     </StyledLogoutButton>
   );
@@ -13,11 +15,11 @@ const LogoutButton = () => {
 
 export default LogoutButton;
 
-const StyledLogoutButton = styled.button `
+const StyledLogoutButton = styled.button`
   background-color: #161748;
   border: 2px solid #f95d9b;
   text-decoration: none;
-  color:#f95d9b;
+  color: #f95d9b;
   margin: 2px;
   padding: 3px;
   font-size: 20px;
@@ -41,4 +43,4 @@ const StyledLogoutButton = styled.button `
   &.active {
     color: #f95d9b;
   }
-  `
+`;

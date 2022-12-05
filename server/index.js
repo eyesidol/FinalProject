@@ -10,6 +10,7 @@ const {
   getSearchArtist,
   postFavorite,
   getFavorites,
+  getVideos
 } = require("./handlers");
 
 express()
@@ -19,7 +20,6 @@ express()
   .use(express.json())
   .use(helmet())
   .use(morgan("tiny"))
-
 
   //gets single artist based on id
   .get("/artist/:id", getArtist)
@@ -31,6 +31,9 @@ express()
 
   .post("/post-favorite", postFavorite)
   .get("/get-favorites", getFavorites)
+
+  .get("/get-videos/:id", getVideos)
+
 
   .listen(port, () => {
     console.log(`Example app listening on port ${port}`);
