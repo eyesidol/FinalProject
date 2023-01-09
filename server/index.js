@@ -36,7 +36,7 @@ express()
 
   .get("/get-videos/:id", getVideos)
   .get("/artist-info/:id", getInfo)
-
+// doesn't work
   .delete("/delete-favorite/:id", deleteFavorite)
 
   .listen(port, () => {
