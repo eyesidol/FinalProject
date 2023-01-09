@@ -1,5 +1,6 @@
 # FinalProject
-ALL API KEYS HAVE BEEN REMOVED FROM /PUBLIC/RUNTIME-ENV.JS. ALL .ENV FILES IN THIS PROJECT HAVE BEEN GIT IGNORED.  
+ALL API KEYS HAVE BEEN REMOVED FROM /PUBLIC/RUNTIME-ENV.JS. ALL .ENV FILES IN THIS PROJECT HAVE BEEN GIT IGNORED.
+![image](https://user-images.githubusercontent.com/95140821/211231814-d5f6caff-73f1-4657-80c6-44ddd4dbf1a8.png)
 -----------------------------------------------------------------------------------------------------------------
 Only missing features is seeing upcoming concerts, as Songkick API was taken down for devlopment
 Audio DB was a worse version of the Youtube API for finding videos of the artist performing
